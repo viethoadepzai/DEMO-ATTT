@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reentrancy Attack Demo (Auction)</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 20px; background-color: #f4f4f4; }
+    .container { max-width: 700px; margin: auto; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    h2, h3 { color: #333; }
+    .section { border-top: 1px solid #eee; padding: 15px 0; }
+    button { font-size: 16px; margin: 5px; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer; background-color: #007bff; color: white; }
+    button:hover { background-color: #0056b3; }
+    button.danger { background-color: #dc3545; }
+    button.danger:hover { background-color: #c82333; }
+    input { width: 95%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+    #status { font-weight: bold; padding: 10px; background-color: #eee; border-radius: 5px; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🚀 Demo Tấn công Reentrancy (Hardhat + MetaMask)</h2>
+    <p>Mô phỏng kịch bản tấn công vào Hợp đồng Đấu giá (Auction).</p>
+
+    <button id="connectButton">1. Connect MetaMask</button>
+    <hr>
+
+    <div class="section">
+      <b>Địa chỉ Hợp đồng (Copy từ terminal deploy):</b><br>
+      <input type="text" id="auctionAddr" placeholder="Dia chi VulnerableAuction (Auction.sol)"><br>
+      <input type="text" id="attackAddr" placeholder="Dia chi Attack (AuctionAttack.sol)">
+    </div>
+
+    <div class="section">
+      <h3>👿 Vai Hacker (Chuyển MetaMask sang Account 1)</h3>
+      <p>Nạn nhân đã nạp 10 ETH khi deploy. Giờ là lúc tấn công.</p>
+      <button id="setupAttackButton">2. Nạp 3 ETH "mồi" (Setup Attack)</button>
+      <button id="runAttack" class="danger">3. !!! RUN ATTACK (withdrawRefund) !!!</button>
+      <button id="drainFunds">4. Rút hết tiền về ví</button>
+    </div>
+
+    <div class="section">
+      <h3>📊 Kiểm tra Trạng thái</h3>
+      <button id="getAuctionBalance">Xem tiền của Auction (Nạn nhân)</button>
+      <button id="getAttackBalance">Xem tiền của Attack (Hacker)</button>
+      <div id="status">Chờ kết nối...</div>
+    </div>
+  </div>
+
+  <!-- Import ethers.js và app.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.6.9/ethers.umd.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
