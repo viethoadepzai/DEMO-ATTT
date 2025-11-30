@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 // Sửa lỗi 1: Import đúng tên file (VulnerableAuction.sol)
-import "./VulnerableAuction.sol";
+import "./SC05_VulnerableAuction.sol";
 import "hardhat/console.sol";
 
 // HỢP ĐỒNG TẤN CÔNG
